@@ -1,4 +1,4 @@
-package com.github.BambooTuna.ChildrenServer
+package com.github.BambooTuna.ChildServer
 
 case class RegisterRequestJson(port: Int,
                                name: String,
@@ -6,7 +6,7 @@ case class RegisterRequestJson(port: Int,
                                token: String)
 
 object RegisterRequestJson {
-  def create(setting: ChildrenServerSetting): RegisterRequestJson =
+  def create(setting: ChildServerSetting): RegisterRequestJson =
     RegisterRequestJson(
       setting.port,
       setting.name,

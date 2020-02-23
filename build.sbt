@@ -7,8 +7,8 @@ lazy val boot = (project in file("boot"))
     organization := "com.github.BambooTuna",
     scalaVersion := "2.12.8",
     version := "1.0.0-SNAPSHOT",
-    name := "ChildrenServer",
-    publishTo := Some(Resolver.file("ChildrenServer",file("."))(Patterns(true, Resolver.mavenStyleBasePattern)))
+    name := "ChildServer",
+    publishTo := Some(Resolver.file("ChildServer",file("."))(Patterns(true, Resolver.mavenStyleBasePattern)))
   )
   .settings(
     resolvers ++= Seq(

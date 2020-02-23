@@ -1,4 +1,4 @@
-package com.github.BambooTuna.ChildrenServer
+package com.github.BambooTuna.ChildServer
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.model.HttpMethods.POST
@@ -27,11 +27,11 @@ import monix.execution.Scheduler.Implicits.global
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
-trait ChildrenServerRoute extends FailFastCirceSupport {
+trait ChildServerRoute extends FailFastCirceSupport {
 
   type QueryP[Q] = Directive[Q] => Route
   val parentSetting: ParentServerSetting
-  val childrenSetting: ChildrenServerSetting
+  val childSetting: ChildServerSetting
 
   var rebootCount = 0
   def f: String => Future[Unit]
@@ -39,7 +39,7 @@ trait ChildrenServerRoute extends FailFastCirceSupport {
   def customCommand: QueryP[Unit] = _ {
     entity(as[CustomCommandRequestJson]) { json =>
       val result =
-        CustomCommandResponseJson.create(rebootCount)(childrenSetting, json)
+        CustomCommandResponseJson.create(rebootCount)(childSetting, json)
       onComplete(f(json.command).flatMap(_ => Future.successful(result))) {
         case Success(Success(value)) =>
           successResponse(value.asJson.noSpaces)
@@ -64,7 +64,7 @@ trait ChildrenServerRoute extends FailFastCirceSupport {
       uri = uri,
       entity =
         HttpEntity(MediaTypes.`application/json`,
-                   RegisterRequestJson.create(childrenSetting).asJson.noSpaces)
+                   RegisterRequestJson.create(childSetting).asJson.noSpaces)
     )
     HttpInterpreter
       .runRequest[String](request)(HttpInterpreter.checkStatusCode())
