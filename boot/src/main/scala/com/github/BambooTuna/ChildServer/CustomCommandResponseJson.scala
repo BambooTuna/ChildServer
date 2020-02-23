@@ -1,4 +1,4 @@
-package com.github.BambooTuna.ChildrenServer
+package com.github.BambooTuna.ChildServer
 
 import scala.util.Try
 
@@ -8,7 +8,7 @@ case class CustomCommandResponseJson(reboot_count: Int,
 
 object CustomCommandResponseJson {
   def create(reboot_count: Int)(
-      setting: ChildrenServerSetting,
+      setting: ChildServerSetting,
       json: CustomCommandRequestJson): Try[CustomCommandResponseJson] = Try {
     require(setting.token == json.token, "Token is not match")
     CustomCommandResponseJson(

@@ -1,9 +1,9 @@
-# ChildrenServer
+# ChildServer
 
 ## Build
 ```bash
 $ sbt boot/publish
 
-resolvers += "Maven Repo on github" at "https://BambooTuna.github.io/ChildrenServer"
-"com.github.BambooTuna" %% "childrenserver" % "1.0.0-SNAPSHOT"
+resolvers += "Maven Repo on github" at "https://BambooTuna.github.io/ChildServer"
+"com.github.BambooTuna" %% "childserver" % "1.0.0-SNAPSHOT"
 ```
