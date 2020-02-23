@@ -8,13 +8,7 @@ import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
 
 object Settings {
 
-  val sdk8 = "adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u212-b03-slim"
-  val sdk11 = "adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.4_11-slim"
-
   lazy val commonSettings = Seq(
-    organization := "com.github.BambooTuna",
-    scalaVersion := "2.12.8",
-    version := "1.0.0-SNAPSHOT",
     libraryDependencies ++= Seq(
       Circe.core,
       Circe.generic,
@@ -36,17 +30,12 @@ object Settings {
     scalafmtTestOnCompile in Compile := true
   )
 
-  lazy val dockerSettings = Seq(
-    fork := true,
-    name := "collectionserver",
-    version := "latest",
-    dockerBaseImage := sdk8,
-    maintainer in Docker := "BambooTuna <bambootuna@gmail.com>",
-    dockerUpdateLatest := true,
-    dockerUsername := Some("bambootuna"),
-    mainClass in (Compile, bashScriptDefines) := Some("com.github.BambooTuna.CollectionServer.boot.server.Main"),
-    packageName in Docker := name.value,
-    dockerExposedPorts := Seq(18080)
+  lazy val packageSetting = Seq(
+    organization := "com.github.BambooTuna",
+    scalaVersion := "2.12.8",
+    version := "1.0.0-SNAPSHOT",
+    name := "ChildServer",
+    publishTo := Some(Resolver.file("ChildServer",file("."))(Patterns(true, Resolver.mavenStyleBasePattern)))
   )
 
 }

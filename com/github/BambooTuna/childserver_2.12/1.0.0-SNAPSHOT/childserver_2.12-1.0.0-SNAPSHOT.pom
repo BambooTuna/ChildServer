@@ -131,23 +131,12 @@
             <artifactId>cryptoexchangeapi_2.12</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.BambooTuna</groupId>
-            <artifactId>authenticationroutersupport_2.12</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <repositories>
         <repository>
             <id>MavenRepoongithub</id>
             <name>Maven Repo on github</name>
             <url>https://BambooTuna.github.io/CryptoExchangeAPI/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>MavenRepoongithub</id>
-            <name>Maven Repo on github</name>
-            <url>https://BambooTuna.github.io/AuthenticationRouterSupport/</url>
             <layout>default</layout>
         </repository>
     </repositories>
