@@ -3,7 +3,6 @@ import Settings._
 lazy val boot = (project in file("boot"))
   .enablePlugins(JavaAppPackaging, AshScriptPlugin, DockerPlugin)
   .settings(commonSettings)
-  .settings(packageSetting)
   .settings(
     resolvers ++= Seq(
       "Maven Repo on github" at "https://BambooTuna.github.io/CryptoExchangeAPI"
@@ -12,6 +11,7 @@ lazy val boot = (project in file("boot"))
       "com.github.BambooTuna" %% "cryptoexchangeapi" % "1.0.0-SNAPSHOT"
     )
   )
+  .settings(packageSetting)
 
 
 lazy val root =
