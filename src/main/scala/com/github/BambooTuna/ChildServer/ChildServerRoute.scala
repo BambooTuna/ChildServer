@@ -55,6 +55,7 @@ trait ChildServerRoute extends FailFastCirceSupport {
                           materializer: ActorMaterializer)
     : Future[Either[HttpInternalException, HttpInterpreterResponse[String]]] = {
     val uri = Uri.from(
+      scheme = parentSetting.scheme,
       host = parentSetting.host,
       port = parentSetting.port,
       path = "/server/register"
