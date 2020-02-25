@@ -55,7 +55,12 @@ trait ChildServerRoute extends FailFastCirceSupport {
     : Future[Either[HttpInternalException, HttpInterpreterResponse[String]]] = {
     val request = HttpRequest(
       method = POST,
-      uri = s"${parentSetting.host}:${parentSetting.port}/server/register",
+      uri = Uri.from(
+        scheme = "http",
+        host = parentSetting.host,
+        port = parentSetting.port,
+        path = "/server/register"
+      ),
       entity =
         HttpEntity(ContentTypes.`application/json`,
                    RegisterRequestJson.create(childSetting).asJson.noSpaces)
