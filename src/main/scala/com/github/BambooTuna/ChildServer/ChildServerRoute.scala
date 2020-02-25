@@ -7,7 +7,6 @@ import akka.http.scaladsl.model.{
   HttpEntity,
   HttpRequest,
   HttpResponse,
-  MediaTypes,
   StatusCodes,
   Uri
 }
@@ -54,17 +53,11 @@ trait ChildServerRoute extends FailFastCirceSupport {
   def sendRegisterRequest(implicit system: ActorSystem,
                           materializer: ActorMaterializer)
     : Future[Either[HttpInternalException, HttpInterpreterResponse[String]]] = {
-    val uri = Uri.from(
-      scheme = parentSetting.scheme,
-      host = parentSetting.host,
-      port = parentSetting.port,
-      path = "/server/register"
-    )
     val request = HttpRequest(
       method = POST,
-      uri = uri,
+      uri = s"${parentSetting.host}:${parentSetting.port}/server/register",
       entity =
-        HttpEntity(MediaTypes.`application/json`,
+        HttpEntity(ContentTypes.`application/json`,
                    RegisterRequestJson.create(childSetting).asJson.noSpaces)
     )
     HttpInterpreter

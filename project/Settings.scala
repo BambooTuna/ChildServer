@@ -35,7 +35,7 @@ object Settings {
   lazy val packageSetting = Seq(
     organization := "com.github.BambooTuna",
     scalaVersion := "2.12.8",
-    version := "1.0.5-SNAPSHOT",
+    version := "1.0.6-SNAPSHOT",
     name := "ChildServer",
     publishTo := Some(Resolver.file("ChildServer",file("."))(Patterns(true, Resolver.mavenStyleBasePattern)))
   )
