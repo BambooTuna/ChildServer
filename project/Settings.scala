@@ -9,6 +9,7 @@ import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
 object Settings {
 
   lazy val commonSettings = Seq(
+    resolvers += "Maven Repo on github" at "https://BambooTuna.github.io/CryptoExchangeAPI",
     libraryDependencies ++= Seq(
       Circe.core,
       Circe.generic,
@@ -24,7 +25,8 @@ object Settings {
       Kamon.datadog,
       Monix.version,
       MySQLConnectorJava.version,
-      Redis.client
+      Redis.client,
+      "com.github.BambooTuna" %% "cryptoexchangeapi" % "1.0.0-SNAPSHOT"
     ) ++ `doobie-quill`.all,
     scalafmtOnCompile in Compile := true,
     scalafmtTestOnCompile in Compile := true
@@ -33,7 +35,7 @@ object Settings {
   lazy val packageSetting = Seq(
     organization := "com.github.BambooTuna",
     scalaVersion := "2.12.8",
-    version := "1.0.3-SNAPSHOT",
+    version := "1.0.4-SNAPSHOT",
     name := "ChildServer",
     publishTo := Some(Resolver.file("ChildServer",file("."))(Patterns(true, Resolver.mavenStyleBasePattern)))
   )
